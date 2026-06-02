@@ -4,6 +4,8 @@
     "jsx": "react-jsx",
     "strict": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "types": ["react", "react-native", "node"]
   },
   "include": ["**/*.ts", "**/*.tsx"]

@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -22,8 +21,8 @@ export default function MenuRegistroScreen() {
 
       {/* Opciones principales */}
       <View style={styles.actionsContainer}>
-        <TouchableOpacity 
-          style={[styles.card, styles.cardPrimary]} 
+        <TouchableOpacity
+          style={[styles.card, styles.cardPrimary]}
           onPress={() => navigation.navigate('TomarFoto')}
           activeOpacity={0.9}
         >
@@ -41,8 +40,8 @@ export default function MenuRegistroScreen() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity 
-          style={[styles.card, styles.cardSecondary]} 
+        <TouchableOpacity
+          style={[styles.card, styles.cardSecondary]}
           onPress={() => navigation.navigate('Historial')}
           activeOpacity={0.9}
         >
@@ -138,7 +137,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'between',
+    justifyContent: 'space-between',
     borderWidth: 1.5,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
