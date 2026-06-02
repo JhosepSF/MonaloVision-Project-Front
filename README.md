@@ -1,180 +1,136 @@
-# PigVision - Frontend (Aplicación Móvil)
+# MonaloVision - Frontend (Aplicación Móvil)
 
 ## 📱 Descripción
-Aplicación móvil desarrollada en React Native con Expo para la estimación inteligente del peso de cerdos mediante análisis de imágenes usando inteligencia artificial. La app combina una interfaz amigable en tonos azul y blanco con un backend potente de IA para proporcionar estimaciones precisas rápidamente.
+Aplicación móvil desarrollada en React Native con Expo para la **detección, clasificación y diagnóstico del nivel de daño por la plaga del chinche del cacao (*Monalonion dissimulatum*)** mediante el análisis fotográfico respaldado por Inteligencia Artificial. La aplicación cuenta con un diseño ergonómico de alta legibilidad bajo luz solar directa en tonos verdes suaves y otoñales, e integra modelos neuronales de vanguardia ejecutados en el servidor backend.
 
 ## 🚀 Repositorios del Proyecto
-- **Frontend (App Móvil)**: https://github.com/JhosepSF/PigVision-Project-Front
-- **Backend (Modelos IA)**: https://github.com/JhosepSF/PigVision-Project-Back
+* **Frontend (App Móvil)**: [https://github.com/JhosepSF/MonaloVision-Project-Front](https://github.com/JhosepSF/MonaloVision-Project-Front)
+* **Backend (Inferencia IA)**: [https://github.com/JhosepSF/MonaloVision-Project-Back](https://github.com/JhosepSF/MonaloVision-Project-Back)
+
+---
 
 ## 📋 Requisitos Previos
 
 ### Software Necesario
-- Node.js (v16 o superior)
-- npm o yarn
-- Expo CLI
-- Android Studio (para emulador Android) o Xcode (para iOS)
-- Expo Go app en dispositivo móvil (opcional)
+* **Node.js** (v18 o superior recomendado)
+* **npm** o **yarn**
+* **Expo CLI** (incluido en las dependencias locales)
+* **Expo Go** instalado en tu dispositivo móvil (Android/iOS) para pruebas locales en campo.
 
-### Backend
-Asegúrate de tener el backend corriendo en tu red local. Por defecto, la app se conecta a:
+### Backend Activo
+La aplicación requiere que el backend Django esté encendido y accesible en el mismo segmento de red WiFi local. Por defecto, está enlazado a:
 ```
-http://192.168.100.7:8000
+http://192.168.172.7:8000
 ```
 
-## 🔧 Instalación
+---
+
+## 🔧 Instalación y Configuración
 
 ### 1. Clonar el Repositorio
 ```bash
-git clone https://github.com/JhosepSF/PigVision-Project-Front.git
-cd PigVision-Project-Front
+git clone https://github.com/JhosepSF/MonaloVision-Project-Front.git
+cd MonaloVision-Project-Front
 ```
 
 ### 2. Instalar Dependencias
+Instala los paquetes nativos compatibles alineados al SDK de Expo:
 ```bash
 npm install
 ```
 
 ### 3. Configurar la URL del Backend
-Edita el archivo `src/services/api.ts` y cambia la IP por la de tu servidor backend:
+Edita el archivo `src/services/api.ts` y actualiza la dirección IP de tu servidor backend de inferencia:
 ```typescript
 const api = axios.create({
-  baseURL: 'http://TU_IP_BACKEND:8000',
+  baseURL: 'http://192.168.172.7:8000', // Modifica por la IP activa de tu PC
   timeout: 60000,
 });
 ```
 
-## ▶️ Ejecución
+---
+
+## ▶️ Ejecución de la Aplicación
 
 ### Modo Desarrollo
+Inicia el entorno de desarrollo y emulación local de Expo:
 ```bash
-# Iniciar Expo
 npx expo start
-
-# Escanea el código QR con Expo Go (Android/iOS)
-# O presiona 'a' para Android Emulator
-# O presiona 'i' para iOS Simulator
 ```
+* Abre la aplicación de **Expo Go** en tu celular y **escanea el código QR** generado en tu terminal.
+* Asegúrate de que tanto tu PC de desarrollo como tu celular estén conectados a la **misma red WiFi** para que puedan comunicarse a través de la IP local configurada.
 
-### Limpiar Caché (si hay problemas)
+---
+
+## 📦 Compilación y Generación del APK (Nativo)
+
+El empaquetado nativo está enlazado a la plataforma Expo Application Services (EAS) con el ID del proyecto: `bc31b4b7-72f2-4716-8757-ca96683719ad`.
+
+### Generar instalador para Android (APK):
 ```bash
-npx expo start -c
-```
-
-## 📦 Compilación
-
-### Build para Android (APK)
-```bash
-# Instalar EAS CLI
+# Instalar EAS CLI de manera global
 npm install -g eas-cli
 
-# Login en Expo
+# Iniciar sesión con tus credenciales de Expo
 eas login
 
-# Configurar build
-eas build:configure
-
-# Crear APK
-eas build -p android --profile preview
+# Iniciar la compilación nativa en los servidores de la nube
+eas build -p android --profile production
 ```
 
-### Build para iOS
-```bash
-eas build -p ios --profile preview
-```
+---
 
 ## 📁 Estructura del Proyecto
+
 ```
 Front/
 ├── src/
-│   ├── components/          # Componentes reutilizables
-│   │   ├── CustomHeader.tsx # Encabezado personalizado
-│   │   └── Footer.tsx       # Pie de página
-│   ├── navigation/          # Navegación de la app
-│   │   └── AppNavigator.tsx # Navigator principal
-│   ├── screens/            # Pantallas principales
-│   │   ├── TomarFotoScreen.tsx      # Captura y estimación
-│   │   ├── MenuRegistroScreen.tsx   # Menú principal
-│   │   └── HistorialScreen.tsx      # Historial de estimaciones
-│   └── services/           # Servicios API
-│       └── api.ts          # Configuración Axios
-├── assets/                 # Recursos estáticos (imágenes, logos)
-├── App.tsx                # Componente principal
-├── app.json               # Configuración de Expo
-├── eas.json              # Configuración de build
-└── package.json          # Dependencias
+│   ├── components/            # Componentes reutilizables de UI
+│   │   ├── CustomHeader.tsx   # Encabezado verde forestal (#2E7D32)
+│   │   └── Footer.tsx         # Pie de página de derechos de autor
+│   ├── navigation/            # Sistema de navegación
+│   │   └── AppNavigator.tsx   # Stack Navigator móvil principal
+│   ├── screens/               # Pantallas (Vistas) principales
+│   │   ├── TomarFotoScreen.tsx    # Captura, análisis, gráfico y toggle AI
+│   │   ├── MenuRegistroScreen.tsx # Menú principal de bienvenida
+│   │   └── HistorialScreen.tsx    # Historial de diagnósticos local
+│   └── services/              # Lógica externa
+│       └── api.ts             # Cliente Axios e integración AsyncStorage
+├── assets/                    # Recursos de diseño (logo.webp, muestras)
+├── App.tsx                    # Punto de entrada
+├── app.json                   # Propiedades y plugins de Expo
+├── eas.json                   # Configuración del empaquetado en la nube
+└── package.json               # Dependencias del proyecto
 ```
 
-## 🎯 Funcionalidades
+---
 
-1. **Captura de Imagen**: Tomar foto del cerdo con la cámara del dispositivo o seleccionar desde galería
-2. **Estimación de Peso**: Envío de imagen al backend para análisis con IA y obtención de peso estimado
-3. **Historial**: Almacenamiento local de estimaciones realizadas con fecha y foto
-4. **Interfaz Intuitiva**: Diseño moderno en tonos azul y blanco, fácil de usar
-5. **Análisis en Tiempo Real**: Feedback inmediato sobre el peso estimado
+## 🎯 Funcionalidades Principales
 
-## 🛠️ Tecnologías Utilizadas
+1. **Captura Fotográfica Optimizada**: Captura fotos del cacao usando la cámara trasera con CameraX o selecciona imágenes directamente de la galería de tu celular.
+2. **Segmentación y Limpieza AI**: El backend procesa tu foto con **Mask R-CNN** y recorta el cacao sobre un fondo negro, permitiéndote presionar el botón *"Segmentado AI"* para ver exactamente el área del fruto evaluada por el modelo.
+3. **Diagnóstico Preciso de Plaga**: Envía el cacao a inferencia (ViT-Tiny + SVM) y lo clasifica en una de las 4 fases: `Sana`, `Daño Ligero`, `Daño Moderado` o `Daño Severo`.
+4. **Distribución Probabilística**: Muestra un gráfico de barras horizontales detallado del porcentaje de probabilidad de afectación para cada estadio.
+5. **Historial Offline**: Registra tus diagnósticos anteriores de manera local sin consumir tu almacenamiento y de forma 100% autónoma en el campo sin conexión a internet.
 
-- **React Native**: Framework para desarrollo móvil
-- **Expo**: Plataforma de desarrollo
-- **TypeScript**: Lenguaje de programación
-- **Axios**: Cliente HTTP para API REST
-- **AsyncStorage**: Almacenamiento local
-- **React Navigation**: Navegación entre pantallas
-- **Expo Camera**: Acceso a cámara del dispositivo
-- **Expo Image Picker**: Selección de imágenes
-
-## 📱 Capturas de Pantalla
-
-#### Pantalla Principal
-![Pantalla Principal](assets/1.jpeg)
-
-#### Captura de Foto
-![Pantalla de Captura](assets/2.jpeg)
-
-#### Procesamiento de Imagen
-![Pantalla de Comprobación del Cerdo](assets/3.jpeg)
-
-#### Resultado de Estimación
-![Pantalla de Análisis](assets/4.jpeg)
-
-#### Historial de Estimaciones
-![Pantalla de Estimación](assets/5.jpeg)
-
-#### Detalles del Historial
-![Pantalla de Historial de Estimaciones](assets/6.jpeg)
+---
 
 ## 🐛 Solución de Problemas
 
-### Error de Conexión con Backend
-- Verifica que el backend esté corriendo en la IP configurada
-- Confirma que estás en la misma red WiFi que el servidor backend
-- Revisa que la IP en `src/services/api.ts` sea correcta
-- Desactiva firewall temporalmente si es necesario
-- En Android, asegúrate de que `cleartext` no esté bloqueado para HTTP
+### Error de Conexión con el Servidor
+* Asegúrate de que el backend de Django esté encendido y escuchando en `0.0.0.0:8000`.
+* Confirma que tu celular y tu PC estén en el mismo WiFi y que no tengas ningún Firewall bloqueando el puerto `8000` en tu PC.
+* Verifica que la IP escrita en `api.ts` coincida con la de tu computadora.
 
-### Error al Instalar Dependencias
-```bash
-rm -rf node_modules
-npm cache clean --force
-npm install
-```
-
-### Caché de Expo no se Actualiza
+### Limpieza de Caché de Expo
+Si la aplicación presenta comportamientos inusuales en Expo Go, puedes borrar la caché ejecutando:
 ```bash
 npx expo start -c
 ```
 
-### Error de Permisos de Cámara
-- Asegúrate de que la app tiene permisos de cámara en ajustes del dispositivo
-- En Android: Settings > Apps > PigVision > Permissions > Camera
-- En iOS: Settings > Privacy > Camera > PigVision
+---
 
-## 👥 Autor
-Jhosep SF
-
-## 📄 Licencia
-Este proyecto es parte de un trabajo académico.
-
-## 📞 Soporte
-Para más información, consulta el [Manual de Usuario](MANUAL_USUARIO.md) y el [Manual Técnico](MANUAL_TECNICO.md).
+**Versión del Proyecto**: 2.0  
+**Fecha de Actualización**: Junio 2026  
+**Desarrollado por**: Jhosep SF & Frank  
+**Soporte de Documentación**: Consultar [Manual Técnico](MANUAL_TECNICO.md) y [Manual de Usuario](MANUAL_USUARIO.md)  
