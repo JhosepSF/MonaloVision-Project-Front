@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Base URL for the Django server. Edit this to match your local IP when testing on a physical device.
 const api = axios.create({
-  baseURL: 'http://192.168.172.7:8000',
+  baseURL: 'http://192.168.100.7:8000',
   timeout: 60000, // 60 seconds to allow for deep-learning model load and inference
 });
 
